@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/nginx-http-redirect', '.' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/nginx-reverse', '.' ]
 images:
-- 'gcr.io/$PROJECT_ID/nginx-http-redirect'
+- 'gcr.io/$PROJECT_ID/nginx-reverse'
