@@ -1,5 +1,9 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
+- id: 'Build Container'
+  name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/nginx-reverse', '.' ]
+- id: 'Update Instance Group'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['compute', 'instance-groups', 'managed', 'rolling-action', 'start-update', 'reverse-proxy', '--version', 'template=nginx-reverse-proxy-template', '--zone=us-central1-a']
 images:
 - 'gcr.io/$PROJECT_ID/nginx-reverse'
